@@ -767,3 +767,32 @@ def denormalize_pixel_coordinates3d(
     factor: torch.Tensor = torch.tensor(2.) / (dhw - 1).clamp(eps)
 
     return torch.tensor(1.) / factor * (pixel_coordinates + 1)
+
+
+def _compute_GL_projection_matrices(near_ul_point: torch.Tensor, width, height, depth):
+    r"""Compute a batch of matrices to project points into Normalized Device Coordinate space
+
+    Args:
+        near_ul_point (torch.Tensor): tensor of 3d vector of upper-left corner of the near plane
+        width (float): tensor of widths of the near plane
+        height (float): tesnor of heights of the near plane
+     Returns:
+        torch.Tensor: Bx4x4 perspective matrix
+    """
+    pass
+
+
+def homogeneuous_to_ndc_coordinates(points: torch.Tensor, depths, intrinsics):
+    r"""Convert a batch of N points BxNx3 to normalized coordinates. Each set (i) of Nx3 points
+         is mapped into a frustum. Near and far planes are calculated from camera intrinsics
+        and the depth (i). Each set of points (i) is mapped to a frustum such as
+        depth (i) equals 0 in normalized coordinates
+
+   Args:
+       points (torch.Tensor): tensor of 3d vectors to convert\
+       depths (float): tensor of depths references
+       intrinsics (torch.Tensor): batch of camera intrinsics Bx4x4
+    Returns:
+       torch.Tensor: BxNx3 points projected into normalized device coordinates
+    """
+    pass

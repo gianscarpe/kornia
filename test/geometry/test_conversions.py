@@ -675,3 +675,8 @@ class TestDenormalizePixelCoordinates:
         expected = op(grid, height, width)
 
         assert_allclose(actual, expected)
+
+
+@pytest.mark.parametrize("batch_size", [1, 2, 5])
+def test_ndc_conversion(batch_size, device):
+    assert True
